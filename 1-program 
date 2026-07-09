@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char text[1000];
+    int k, i;
+
+    printf("Enter a message: ");
+    if (!fgets(text, sizeof(text), stdin)) {
+        return 1;
+    }
+
+    printf("Enter shift value (1-25): ");
+    if (scanf("%d", &k) != 1) {
+        printf("Invalid input!\n");
+        return 1;
+    }
+
+    if (k < 1 || k > 25) {
+        printf("Invalid shift value! Enter a value between 1 and 25.\n");
+        return 1;
+    }
+
+    for (i = 0; text[i] != '\0'; i++) {
+        char ch = text[i];
+
+        if (isupper((unsigned char)ch)) {
+            text[i] = ((ch - 'A' + k) % 26) + 'A';
+        } else if (islower((unsigned char)ch)) {
+            text[i] = ((ch - 'a' + k) % 26) + 'a';
+        }
+    }
+
+    printf("Encrypted message: %s", text);
+    return 0;
+
+}
