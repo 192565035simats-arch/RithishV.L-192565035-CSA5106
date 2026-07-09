@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char plaintext[100], key[100];
+    int i, j = 0;
+
+    printf("Enter the plaintext (uppercase): ");
+    scanf("%s", plaintext);
+
+    printf("Enter the key (uppercase): ");
+    scanf("%s", key);
+
+    int keyLength = strlen(key);
+
+    printf("Ciphertext: ");
+
+    for(i = 0; plaintext[i] != '\0'; i++)
+    {
+        char p = plaintext[i];
+        char k = key[j % keyLength];
+
+        if(isupper(p))
+        {
+            char cipher = ((p - 'A') + (k - 'A')) % 26 + 'A';
+            printf("%c", cipher);
+            j++;
+        }
+    }
+
+    return 0;
+}
