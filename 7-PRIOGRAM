@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+char decrypt(char ch)
+{
+    switch(ch)
+    {
+        case '5': return 'A';
+        case '3': return 'G';
+        /* replaced non-ASCII symbols with ASCII placeholders */
+        case 'X': return 'D'; /* was '‡' */
+        case 'Y': return 'L'; /* was '†' */
+        case '0': return 'F';
+        case ')': return 'N';
+        case '6': return 'I';
+        case '*': return 'S';
+        case ';': return 'T';
+        case '4': return 'H';
+        case '8': return 'E';
+        case '2': return 'R';
+        case 'Z': return 'V'; /* was '¶' */
+        case ']': return 'B';
+        case ':': return 'P';
+        case '?': return 'U';
+        case '(': return 'O';
+        case '9': return 'M';
+        case '1': return 'Y';
+        case '.': return '\'';
+        case '-': return 'W';
+        default:  return ch;
+    }
+}
+
+int main()
+{
+    char cipher[] =
+    "53‡‡†305))6*;4826)4‡.)4‡);806*;48†8¶60))85;;]8*;:‡*8†83"
+    "(88)5*†;46(;88*96*?;8)*‡(;485);5*†2:*‡(;4956*2(5*-4)8¶8*"
+    ";4069285);)6†8)4‡‡;1(‡9;48081;8:8‡1;48†85;4)485†528806*81"
+    "(‡9;48;(88;4(‡?34;48)4‡;161;:188;‡?;";
+
+    int i;
+
+    printf("Decrypted Text:\n\n");
+
+    for(i = 0; cipher[i] != '\0'; i++)
+    {
+        printf("%c", decrypt(cipher[i]));
+    }
+
+    return 0;
+}
